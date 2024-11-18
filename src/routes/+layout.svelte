@@ -3,9 +3,10 @@
 
 	import { mountVercelToolbar } from '@vercel/toolbar/vite';
 	import { onMount } from 'svelte';
-
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import Header from './Header.svelte';
 	import '../app.css';
+	injectAnalytics();
 
 	let { 
 		data, 
