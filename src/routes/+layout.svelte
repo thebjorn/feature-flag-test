@@ -1,14 +1,25 @@
 <script lang="ts">
+	import type { LayoutData } from './$types';
+
+	import { mountVercelToolbar } from '@vercel/toolbar/vite';
+	import { onMount } from 'svelte';
+
 	import Header from './Header.svelte';
 	import '../app.css';
 
-	let { children } = $props();
+	let { 
+		data, 
+		children 
+	} = $props();
+
+	onMount(() => mountVercelToolbar());
 </script>
 
 <div class="app">
 	<Header />
 
 	<main>
+		{data.title}
 		{@render children()}
 	</main>
 

@@ -2,6 +2,24 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcomeFallback from '$lib/images/svelte-welcome.png';
+	import QEditor from './QEditor.svelte';
+	import Topics from './Topics.svelte';
+
+	let {
+		data
+	} = $props();
+
+	let topics = $state([{
+		name: 'topic 1',
+		questions: [{name: 'hello'}]
+	},{
+		name: 'topic 2',
+		questions: [{name: 'goodbye'}]
+	}])
+
+	let selected_topic = $state(topics[0])
+	let questions = $derived(selected_topic.questions)
+	let qnames = $derived(questions.map(q => q.name))
 </script>
 
 <svelte:head>
@@ -10,7 +28,38 @@
 </svelte:head>
 
 <section>
+	<Topics topics={topics} bind:selected_topic />
+
+	<div class="grid-x">
+		<div>
+			<h2>all topics</h2>
+			<pre>{JSON.stringify(topics, null, 2)}</pre>
+		</div>
+		<div>
+			<h2>Selected topic</h2>
+			<pre>{JSON.stringify(selected_topic, null, 2)}</pre>
+		</div>
+		<div>
+			<h2>Questions</h2>
+			<pre>{JSON.stringify(questions, null, 2)}</pre>
+		</div>
+		<div>
+			<h2>Question names</h2>
+			<pre>{JSON.stringify(qnames, null, 2)}</pre>
+		</div>
+	</div>
+	<hr>
+
+	<QEditor qnames={qnames} {questions} bind:selected_topic />
+
+	
+
+	<hr style="width: 100%; border-top:1px solid rebeccapurple">
+
+
+	<strong>FLAGS DATA:</strong><pre>{JSON.stringify(data, null, 2)}</pre>
 	<h1>
+		
 		<span class="welcome">
 			<picture>
 				<source srcset={welcome} type="image/webp" />
@@ -29,6 +78,12 @@
 </section>
 
 <style>
+	.grid-x {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
@@ -55,5 +110,10 @@
 		height: 100%;
 		top: 0;
 		display: block;
+	}
+
+	hr {
+		width: 100%;
+		border-top: 1px solid rebeccapurple;
 	}
 </style>
