@@ -9,7 +9,8 @@ export const showDashboard = flag<boolean>({
         { value: false }
     ], // optional
     // can be async and has access to the event
-    decide(_event) {
-        return false;
+    decide(event) {
+        // console.log("EVENT", event);
+        return true;
     },
 });

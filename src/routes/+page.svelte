@@ -9,17 +9,17 @@
 		data
 	} = $props();
 
-	let topics = $state([{
-		name: 'topic 1',
-		questions: [{name: 'hello'}]
-	},{
-		name: 'topic 2',
-		questions: [{name: 'goodbye'}]
-	}])
+	// let topics = $state([{
+	// 	name: 'topic 1',
+	// 	questions: [{name: 'hello'}]
+	// },{
+	// 	name: 'topic 2',
+	// 	questions: [{name: 'goodbye'}]
+	// }])
 
-	let selected_topic = $state(topics[0])
-	let questions = $derived(selected_topic.questions)
-	let qnames = $derived(questions.map(q => q.name))
+	// let selected_topic = $state(topics[0])
+	// let questions = $derived(selected_topic.questions)
+	// let qnames = $derived(questions.map(q => q.name))
 </script>
 
 <svelte:head>
@@ -28,7 +28,7 @@
 </svelte:head>
 
 <section>
-	<Topics topics={topics} bind:selected_topic />
+	<!-- <Topics topics={topics} bind:selected_topic />
 
 	<div class="grid-x">
 		<div>
@@ -54,7 +54,7 @@
 
 	
 
-	<hr style="width: 100%; border-top:1px solid rebeccapurple">
+	<hr style="width: 100%; border-top:1px solid rebeccapurple"> -->
 
 
 	<strong>FLAGS DATA:</strong><pre>{JSON.stringify(data, null, 2)}</pre>
