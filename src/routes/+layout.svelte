@@ -6,7 +6,7 @@
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import Header from './Header.svelte';
 	import '../app.css';
-	injectAnalytics();
+	import { showDashboard } from '$lib/flags';
 
 	let { 
 		data, 
@@ -17,6 +17,9 @@
 </script>
 
 <div class="app">
+	<script type="application/json" data-flag-definitions>
+		{JSON.stringify(showDashboard)}
+	</script>
 	<Header />
 
 	<main>
